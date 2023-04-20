@@ -12,9 +12,9 @@ require('dotenv').config();
       app.use(cookieParser(process.env.COOKIE_SECRET));
       app.use(express.static(path.join(__dirname, 'public')));
       const usersRouter = require("./routes/usersRoutes");
-      const userdataRouter = require("./routes/userdataRoutes");
+      const RegistrationRouter = require("./routes/RegistrationRoutes");
       app.use("/api/users",usersRouter);
-      app.use("/api/userdata", userdataRouter);
+      app.use("/api/Registration", RegistrationRouter);
       const port = parseInt(process.env.port || '4321');
       app.listen(port,function() {
         console.log("Server running at http://localhost:"+port);
