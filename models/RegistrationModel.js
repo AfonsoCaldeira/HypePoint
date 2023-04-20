@@ -1,10 +1,10 @@
 const pool = require("../config/database");
 
-function  userdataFromDB (dbObj) {
-    return new userdata(dbObj.user_id, dbObj.name, dbObj.surname, dbObj.email, dbObj.birthdate, dbObj.gender);
+function  RegistrationFromDB (dbObj) {
+    return new userRegister(dbObj.user_id, dbObj.name, dbObj.surname, dbObj.email, dbObj.birthdate, dbObj.gender);
 }
 
-class userdata{
+class userRegister{
     constructor(id, name, surname, email, birthdate, gender){
         this.id = id;
         this.name = name;
@@ -17,9 +17,9 @@ class userdata{
     static async getAll() {
         try{
             let result = [];
-            let[dbUserdata,fields] = await pool.query ("Select * from userdata");
-            for (let dbUser of dbUserdata){
-                result.push(userdataFromDB(dbUser));
+            let[dbUserRegister,fields] = await pool.query ("Select * from Registration");
+            for (let DbRegist of dbUserRegister){
+                result.push(RegistrationFromDB(DbRegist));
             }
             return {status: 200, result: result};
         } catch(err){
@@ -28,4 +28,4 @@ class userdata{
         }
     }
 }
-module.exports = userdata;
+module.exports = userRegister;
